@@ -1,6 +1,4 @@
 function cognitoRegist() {
-
-
     function toUsername(email) {
         return email.replace('@', '-at-');
     }
@@ -11,10 +9,19 @@ function cognitoRegist() {
     };
     let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
+    let attributeList = [];
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
-    userPool.signUp(toUsername(email), password, null, null,
+    let dataEmail = {
+        Name: 'email',
+        Value: email
+    };
+    let attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+
+    attributeList.push(attributeEmail);
+
+    userPool.signUp(toUsername(email), password, attributeList, null,
         function(err, result) {
             if (err) {
                 alert(err.message || JSON.stringify(err));
