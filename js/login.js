@@ -9,7 +9,6 @@ function cognitoLogin() {
     };
     let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-    let attributeList = [];
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
@@ -32,7 +31,7 @@ function cognitoLogin() {
             AWS.config.region = _config.cognito.region;
             let login_key = `cognito-idp.${_config.cognito.region}.amazonaws.com/${_config.cognito.userPoolId}`
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                IdentityPoolId: `${_config.cognito.userPoolId}`,
+                IdentityPoolId: `${_config.cognito.region}:${_config.cognito.userPoolId}`,
                 Logins: {
                     [login_key] : result.getIdToken().getJwtToken(),
                 },
