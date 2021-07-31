@@ -28,6 +28,7 @@ function cognitoRegist() {
                 return;
             }
             let cognitoUser = result.user;
+            //TODO:登録成功メッセージの追加
             console.log('user name is ' + cognitoUser.getUsername());
         }
     );

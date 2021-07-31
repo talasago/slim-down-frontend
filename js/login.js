@@ -28,23 +28,24 @@ function cognitoLogin() {
             let accessToken = result.getAccessToken().getJwtToken();
             console.log("accessToken : " + accessToken);
 
-            AWS.config.region = _config.cognito.region;
-            let login_key = `cognito-idp.${_config.cognito.region}.amazonaws.com/${_config.cognito.userPoolId}`
-            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                IdentityPoolId: `${_config.cognito.region}:${_config.cognito.userPoolId}`,
-                Logins: {
-                    [login_key] : result.getIdToken().getJwtToken(),
-                },
-            });
-
-            AWS.config.credentials.refresh(error => {
-                if (error) {
-                    console.error(error);
-                } else {
-                    // example: let s3 = new AWS.S3();
-                    console.log('Successfully logged!');
-                }
-            });
+            // cognitoIDプールを作成していないため論理削除
+            //
+            //AWS.config.region = _config.cognito.region;
+            //let login_key = `cognito-idp.${_config.cognito.region}.amazonaws.com/${_config.cognito.userPoolId}`
+            //AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            //    IdentityPoolId: `}`,
+            //    Logins: {
+            //        [login_key] : result.getIdToken().getJwtToken(),
+            //    },
+            //});
+            //AWS.config.credentials.refresh(error => {
+            //    if (error) {
+            //        console.error(error);
+            //    } else {
+            //        // example: let s3 = new AWS.S3();
+            //        console.log('Successfully logged!');
+            //    }
+            //});
         },
 
         onFailure: function(err) {
