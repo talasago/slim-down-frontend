@@ -26,7 +26,10 @@ function cognitoLogin() {
         //認証成功
         onSuccess: function(result) {
             let accessToken = result.getAccessToken().getJwtToken();
+            let idToken = result.getIdToken().getJwtToken();
+
             console.log("accessToken : " + accessToken);
+            console.log("idToken : " + idToken);
 
             // cognitoIDプールを作成していないため論理削除
             //
