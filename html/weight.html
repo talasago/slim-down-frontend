@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>体重登録</title>
+</head>
+
+<body>
+    <h1>体重登録</h1>
+    <div>
+        <input type="text" id="weight" name="weight" step="0.1" placeholder="65.56" required>
+        <input type="button" value="登録" onclick="weightRegist()">
+    </div>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.958.0.min.js"></script>
+    <script src="/js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="/js/congig.js"></script>
+    <script src="/js/regist.js"></script>
+</body>
+
+</html>

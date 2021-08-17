@@ -31,6 +31,12 @@ function cognitoLogin() {
             console.log("accessToken : " + accessToken);
             console.log("idToken : " + idToken);
 
+            localStorage.setItem("idToken", idToken);
+            localStorage.setItem("accessToken", accessToken);
+
+            // ログイン後のページへ遷移
+            window.location.href = './weight.html'
+
             // cognitoIDプールを作成していないため論理削除
             //
             //AWS.config.region = _config.cognito.region;
