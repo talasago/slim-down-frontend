@@ -8,6 +8,7 @@ async function weightRegist() {
     };
     let params = {
         method: "POST",
+        mode: 'cors',
         headers: {
             Authorization: id_token
         },
