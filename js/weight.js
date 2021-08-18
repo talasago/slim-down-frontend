@@ -2,7 +2,7 @@ let id_token = localStorage.getItem("idToken");
 let access_token = localStorage.getItem("accessToken");
 
 async function weightRegist() {
-    let endpoint = "https://3x6mu44qq7.execute-api.ap-northeast-1.amazonaws.com/dev/";
+    let endpoint = "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/";
     let data = {
         weight: document.getElementById("weight").value
     };
