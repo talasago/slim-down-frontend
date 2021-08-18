@@ -1,7 +1,7 @@
 let id_token = localStorage.getItem("idToken");
 let access_token = localStorage.getItem("accessToken");
 
-async function weightRegist() {
+function weightRegist() {
     let endpoint = "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/";
     let data = {
         weight: document.getElementById("weight").value
@@ -15,14 +15,18 @@ async function weightRegist() {
         body: JSON.stringify(data)
     };
 
-    let res = await fetch(endpoint, params);
-
-    if (res.ok){
-        alert("登録しました");
-    } else {
-        alert("登録時にエラーが発生しました");
-        console.log(res.text());
-    };
+    fetch(endpoint, params)
+        .then(response => {
+            if (response.ok) {
+                alert("登録しました");
+            } else {
+                alert("登録時にエラーが発生しました");
+            }
+        })
+        .catch(error => {
+            alert("登録時にエラーが発生しました");
+            console.log(error);
+        });
 }
 
 function weightDelete() {
