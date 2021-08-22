@@ -3,62 +3,60 @@ function cognitoLogin() {
         return email.replace('@', '-at-');
     }
 
-    let poolData = {
-        UserPoolId: _config.cognito.userPoolId,
-        ClientId: _config.cognito.clientId
+    let endpoint = "https://a5pca4fu68.execute-api.ap-northeast-1.amazonaws.com/dev/auth";
+    let data = {
+        email: toUsername(document.getElementById("email").value);
+        password: document.getElementById("password").value;
     };
-    let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    let params = {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify(data)
+    };
 
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    fetch(endpoint, params)
+        .then(response => {
+            if (response.ok) {
+                return response.json;
+            } else {
+                alert("ログイン時にエラーが発生しました");
+            }
+        })
+        .then((result) => {
+            authSuccess(result);
+        })
+        .catch(error => {
+            alert("ログイン時にエラーが発生しました");
+            console.log(error);
+        });
 
-    let authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-        Username: toUsername(email),
-        Password: password
-    })
+    function authSuccess(json){
+        data = json.bodyい;
 
-    let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
-        Username: toUsername(email),
-        Pool: userPool
-    });
+        localStorage.setItem("idToken", data.idToken);
+        localStorage.setItem("accessToken", data.accessToken);
 
-    cognitoUser.authenticateUser(authenticationDetails, {
-        //認証成功
-        onSuccess: function(result) {
-            let accessToken = result.getAccessToken().getJwtToken();
-            let idToken = result.getIdToken().getJwtToken();
+        alert("ログインしました");
 
-            console.log("accessToken : " + accessToken);
-            console.log("idToken : " + idToken);
+        // ログイン後のページへ遷移
+        window.location.href = `./weight.html?sub=${data.sub}`
 
-            localStorage.setItem("idToken", idToken);
-            localStorage.setItem("accessToken", accessToken);
+    }
+    //let poolData = {
+    //    UserPoolId: _config.cognito.userPoolId,
+    //    ClientId: _config.cognito.clientId
+    //};
+    //let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-            // ログイン後のページへ遷移
-            window.location.href = './weight.html'
 
-            // cognitoIDプールを作成していないため論理削除
-            //
-            //AWS.config.region = _config.cognito.region;
-            //let login_key = `cognito-idp.${_config.cognito.region}.amazonaws.com/${_config.cognito.userPoolId}`
-            //AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            //    IdentityPoolId: `}`,
-            //    Logins: {
-            //        [login_key] : result.getIdToken().getJwtToken(),
-            //    },
-            //});
-            //AWS.config.credentials.refresh(error => {
-            //    if (error) {
-            //        console.error(error);
-            //    } else {
-            //        // example: let s3 = new AWS.S3();
-            //        console.log('Successfully logged!');
-            //    }
-            //});
-        },
+    //let authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+    //    Username: toUsername(email),
+    //    Password: password
+    //})
 
-        onFailure: function(err) {
-            alert(err.message || JSON.stringify(err));
-        },
-    });
+    //let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+    //    Username: toUsername(email),
+    //    Pool: userPool
+    //});
+
 }
