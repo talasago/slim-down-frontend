@@ -18,14 +18,14 @@ window.onload = function weightReed(){
             if (response.ok) {
                 return response.json;
             } else {
-                alert("登録時にエラーが発生しました");
+                alert("データ読取時にエラーが発生しました");
             }
         })
         .then((result) => {
             readContentScreenApply(result);
         })
         .catch(error => {
-            alert("登録時にエラーが発生しました");
+            alert("データ読取時にエラーが発生しました");
             console.log(error);
         });
 

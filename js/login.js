@@ -31,7 +31,7 @@ function cognitoLogin() {
         });
 
     function authSuccess(json){
-        data = json.bodyい;
+        data = json.body;
 
         localStorage.setItem("idToken", data.idToken);
         localStorage.setItem("accessToken", data.accessToken);
