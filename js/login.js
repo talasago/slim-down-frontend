@@ -5,8 +5,8 @@ function cognitoLogin() {
 
     let endpoint = "https://a5pca4fu68.execute-api.ap-northeast-1.amazonaws.com/dev/auth";
     let data = {
-        email: toUsername(document.getElementById("email").value);
-        password: document.getElementById("password").value;
+        email: toUsername(document.getElementById("email").value)
+        password: document.getElementById("password").value
     };
     let params = {
         method: "POST",
