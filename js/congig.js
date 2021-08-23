@@ -5,7 +5,7 @@ window._config = {
         region: 'ap-northeast-1'
     },
     endpoint: {
-        auth: "https://tgb3rw52k1.execute-api.ap-northeast-1.amazonaws.com/dev",
+        auth: "https://tgb3rw52k1.execute-api.ap-northeast-1.amazonaws.com/dev/auth",
         weight: "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev"
     }
 };
