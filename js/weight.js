@@ -4,7 +4,7 @@ let access_token = localStorage.getItem("accessToken");
 window.onload = function weightReed(){
 
     query_string = window.location.search;
-    let endpoint = `https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/${query_string}`;
+    let endpoint = `${_config.endpoint.auth}/${query_string}`;
     let params = {
         method: "GET",
         mode: 'cors',
