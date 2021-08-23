@@ -3,7 +3,7 @@ function cognitoLogin() {
         return email.replace('@', '-at-');
     }
 
-    let endpoint = "https://a5pca4fu68.execute-api.ap-northeast-1.amazonaws.com/dev/auth";
+    let endpoint = _config.endpoint.auth;
     let data = {
         email: toUsername(document.getElementById("email").value),
         password: document.getElementById("password").value
