@@ -17,29 +17,27 @@ function cognitoLogin() {
     fetch(endpoint, params)
         .then(response => {
             if (response.ok) {
-                return response.json;
+                return response.json();
             } else {
                 alert("ログイン時にエラーが発生しました");
             }
         })
-        .then((result) => {
-            authSuccess(result);
+        .then((response_body) => {
+            authSuccess(response_body);
         })
         .catch(error => {
             alert("ログイン時にエラーが発生しました");
             console.log(error);
         });
 
-    function authSuccess(json){
-        data = json.body;
-
-        localStorage.setItem("idToken", data.idToken);
-        localStorage.setItem("accessToken", data.accessToken);
+    function authSuccess(response_body){
+        localStorage.setItem("idToken", response_body.idToken);
+        localStorage.setItem("accessToken", response_body.accessToken);
 
         alert("ログインしました");
 
         // ログイン後のページへ遷移
-        window.location.href = `./weight.html?sub=${data.sub}`
+        window.location.href = `./weight.html?sub=${response_body.sub}`
 
     }
     //let poolData = {
