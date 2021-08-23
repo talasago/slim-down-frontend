@@ -37,7 +37,7 @@ window.onload = function weightReed(){
 function weightRegist() {
     let endpoint = "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/";
     let data = {
-        weight: parseFloat(document.getElementById("weight").value)
+        weight: document.getElementById("weight").value
     };
     let params = {
         method: "POST",
