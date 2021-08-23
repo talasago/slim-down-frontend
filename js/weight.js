@@ -21,17 +21,16 @@ window.onload = function weightReed(){
                 alert("データ読取時にエラーが発生しました");
             }
         })
-        .then((result) => {
-            readContentScreenApply(result);
+        .then((response_body) => {
+            readContentScreenApply(response_body);
         })
         .catch(error => {
             alert("データ読取時にエラーが発生しました");
             console.log(error);
         });
 
-    function readContentScreenApply(json){
-        data = json.body;
-        document.getElementById("weight").value = data.Item.sub;
+    function readContentScreenApply(response_body){
+        document.getElementById("weight").value = response_body.sub;
     }
 }
 
