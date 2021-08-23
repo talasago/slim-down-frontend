@@ -16,7 +16,7 @@ window.onload = function weightReed(){
     fetch(endpoint, params)
         .then(response => {
             if (response.ok) {
-                return response.json;
+                return response.json();
             } else {
                 alert("データ読取時にエラーが発生しました");
             }
