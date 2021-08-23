@@ -30,14 +30,14 @@ window.onload = function weightReed(){
         });
 
     function readContentScreenApply(response_body){
-        document.getElementById("weight").value = response_body.sub;
+        document.getElementById("weight").value = response_body.weight;
     }
 }
 
 function weightRegist() {
     let endpoint = "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/";
     let data = {
-        weight: document.getElementById("weight").value
+        weight: parseFloat(document.getElementById("weight").value)
     };
     let params = {
         method: "POST",
