@@ -30,7 +30,7 @@ window.onload = function weightReed(){
 
     function readContentScreenApply(response_body){
         weight_input = document.getElementById("weight")
-        !Object.keys(response_body).length ? weight_input.value = response_body.weight : null;
+        Object.keys(response_body).length ? weight_input.value = response_body.weight : null;
     }
 }
 
