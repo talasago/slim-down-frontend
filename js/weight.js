@@ -1,7 +1,9 @@
 let id_token = localStorage.getItem("idToken");
 let access_token = localStorage.getItem("accessToken");
+const SUB = localStorage.getItem("sub");
 
 window.onload = function weightReed(){
+    //subはクエリパラメータで取得
     let query_string = window.location.search;
     let endpoint = `${_config.endpoint.weight}/${query_string}`;
     let params = {
@@ -29,12 +31,17 @@ window.onload = function weightReed(){
         });
 
     function readContentScreenApply(response_body){
-        weight_input = document.getElementById("weight")
-        Object.keys(response_body).length ? weight_input.value = response_body.weight : null;
+        //subに紐づくweightが存在すれば
+        if (Object.keys(response_body).length) {
+            weight_input.value = document.getElementById("weight");
+            document.getElementById("regist").style.visibility = "visible";
+            document.getElementById("update").style.visibility = "hidden";
+        }
     }
 }
 
 function weightRegist() {
+    //subはtokenで取得
     let endpoint = "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/";
     let data = {
         weight: document.getElementById("weight").value
@@ -63,5 +70,32 @@ function weightRegist() {
 }
 
 function weightDelete() {
+    //subはlocalstrageから取得
+    let endpoint = _config.endpoint.weight;
+    let params = {
+        method: "PUT",
+        mode: 'cors',
+        headers: {
+            Authorization: id_token
+        },
+    };
+    let data = {
+        weight: document.getElementById("weight").value,
+        sub: SUB
+    };
+
+    fetch(endpoint, params)
+    .then(response => {
+        if (response.ok) {
+            alert("更新しました");
+        } else {
+            alert("更新時にエラーが発生しました");
+        }
+    })
+    .catch(error => {
+        alert("更新時にエラーが発生しました");
+        console.log(error);
+    });
+}
 
 }

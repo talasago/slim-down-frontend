@@ -33,6 +33,7 @@ function cognitoLogin() {
     function authSuccess(response_body){
         localStorage.setItem("idToken", response_body.idToken);
         localStorage.setItem("accessToken", response_body.accessToken);
+        localStorage.setItem("sub", response_body.sub);
 
         alert("ログインしました");
 

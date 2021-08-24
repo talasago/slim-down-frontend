@@ -12,7 +12,8 @@
     <h1>体重登録</h1>
     <div>
         <input type="number" id="weight" name="weight" step="0.1" placeholder="65.56" required>
-        <input type="button" value="登録" onclick="weightRegist()">
+        <input type="button" id="regist" value="登録" onclick="weightRegist()">
+        <input type="button" id="update" value="更新" onclick="weightUpdate()" hidden>
     </div>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.958.0.min.js"></script>
     <script src="/js/vendor/amazon-cognito-identity.min.js"></script>
