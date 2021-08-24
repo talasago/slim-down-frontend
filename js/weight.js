@@ -69,7 +69,7 @@ function weightRegist() {
         });
 }
 
-function weightDelete() {
+function weightUpdate() {
     //subはlocalstrageから取得
     let endpoint = _config.endpoint.weight;
     let data = {
