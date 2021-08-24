@@ -33,7 +33,7 @@ window.onload = function weightReed(){
     function readContentScreenApply(response_body){
         //subに紐づくweightが存在すれば
         if (Object.keys(response_body).length) {
-            weight_input.value = document.getElementById("weight");
+            document.getElementById("weight").value = response_body.weight;
             document.getElementById("regist").style.visibility = "visible";
             document.getElementById("update").style.visibility = "hidden";
         }
@@ -72,16 +72,17 @@ function weightRegist() {
 function weightDelete() {
     //subはlocalstrageから取得
     let endpoint = _config.endpoint.weight;
+    let data = {
+        weight: document.getElementById("weight").value,
+        sub: SUB
+    };
     let params = {
         method: "PUT",
         mode: 'cors',
         headers: {
             Authorization: id_token
         },
-    };
-    let data = {
-        weight: document.getElementById("weight").value,
-        sub: SUB
+        body: JSON.stringify(data)
     };
 
     fetch(endpoint, params)
