@@ -2,8 +2,7 @@ let id_token = localStorage.getItem("idToken");
 let access_token = localStorage.getItem("accessToken");
 
 window.onload = function weightReed(){
-
-    query_string = window.location.search;
+    let query_string = window.location.search;
     let endpoint = `${_config.endpoint.weight}/${query_string}`;
     let params = {
         method: "GET",
@@ -30,7 +29,8 @@ window.onload = function weightReed(){
         });
 
     function readContentScreenApply(response_body){
-        document.getElementById("weight").value = response_body.weight;
+        weight_input = document.getElementById("weight")
+        !Object.keys(response_body).length ? weight_input.value = response_body.weight : null;
     }
 }
 
