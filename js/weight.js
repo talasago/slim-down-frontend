@@ -34,8 +34,8 @@ window.onload = function weightReed(){
         //subに紐づくweightが存在すれば
         if (Object.keys(response_body).length) {
             document.getElementById("weight").value = response_body.weight;
-            document.getElementById("regist").style.visibility = "visible";
-            document.getElementById("update").style.visibility = "hidden";
+            document.getElementById("regist").hidden = false;
+            document.getElementById("update").hidden = true;
         }
     }
 }
