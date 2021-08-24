@@ -97,5 +97,3 @@ function weightDelete() {
         console.log(error);
     });
 }
-
-}
