@@ -6,6 +6,8 @@ window._config = {
     },
     endpoint: {
         auth: "https://queii9cxx9.execute-api.ap-northeast-1.amazonaws.com/dev/auth",
-        weight: "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev"
+        weight: "https://iv46sd6ij0.execute-api.ap-northeast-1.amazonaws.com/dev/",
+        community: "https://qeyyc53unb.execute-api.ap-northeast-1.amazonaws.com/dev/community/",
+        commutityInfo: "https://qeyyc53unb.execute-api.ap-northeast-1.amazonaws.com/dev/community/info/"
     }
 };
