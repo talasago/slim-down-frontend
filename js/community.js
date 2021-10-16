@@ -34,14 +34,22 @@ window.onload = function communityReed(){
         if (!Object.keys(response_body).length) {
             return null;
         }
-        // row
-        let tr = document.createElement("tr");
 
-        for (let item_key in response_body.items) {
-            let td = document.createElement("td");
-            td.createTextNode(response_body.items[item_key]);
-            tr.appendChild(td);
+        //一覧作成
+        let trs = document.createDocumentFragment();
+        for (let item of response_body.items) {
+            let tr = document.createElement("tr");
+            let tds = document.createDocumentFragment();
+
+            // column
+            for (let key in item) {
+                let td = document.createElement("td");
+                td.appendChild(document.createTextNode(item[key]));
+                tds.append(td);
+            }
+            tr.append(tds);
+            trs.append(tr);
         }
-        document.getElementById('TbodyCommunityList').appendChild(tr);
+        document.getElementById('TbodyCommunityList').append(trs);
     }
 }
