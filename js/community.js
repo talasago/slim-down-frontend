@@ -4,7 +4,7 @@ let sub = localStorage.getItem("sub");
 
 window.onload = function communityReed(){
     //subはクエリパラメータで取得
-    let endpoint = `${_config.endpoint.weight}/info/`;
+    let endpoint = `${_config.endpoint.commutityInfo}`;
     let params = {
         method: "GET",
         mode: 'cors',
