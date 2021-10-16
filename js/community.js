@@ -30,6 +30,18 @@ window.onload = function communityReed(){
         });
 
     function readContentScreenApply(response_body){
-        console.log(response_body)
+        //itemsがなれけば処理を抜ける
+        if (!Object.keys(response_body).length) {
+            return null;
+        }
+        // row
+        let tr = document.createElement("tr");
+
+        for (let item_key in response_body.items) {
+            let td = document.createElement("td");
+            td.createTextNode(response_body.items[item_key]);
+            tr.appendChild(td);
+        }
+        document.getElementById('TbodyCommunityList').appendChild(tr);
     }
 }
