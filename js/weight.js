@@ -42,7 +42,7 @@ window.onload = function weightReed(){
 
 function weightRegist() {
     //subはtokenで取得
-    let endpoint = "https://p6k8t7vfe1.execute-api.ap-northeast-1.amazonaws.com/dev/";
+    let endpoint = `${_config.endpoint.weight}/`;
     let data = {
         weight: document.getElementById("weight").value
     };
