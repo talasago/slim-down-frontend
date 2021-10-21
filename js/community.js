@@ -40,6 +40,7 @@ window.onload = function communityReed(){
         for (let item of response_body.items) {
             let tr = document.createElement("tr");
             let tds = document.createDocumentFragment();
+            let a = document.createElement("a")
 
             // column
             for (let key in item) {
@@ -47,7 +48,8 @@ window.onload = function communityReed(){
                 td.appendChild(document.createTextNode(item[key]));
                 tds.append(td);
             }
-            tr.append(tds);
+            a.href = `${_config.endpoint.commutityInfo}?communityId=${item["CommunitId"]}`
+            tr.append(tds, a);
             trs.append(tr);
         }
         document.getElementById('TbodyCommunityList').append(trs);
