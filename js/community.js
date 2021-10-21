@@ -49,6 +49,7 @@ window.onload = function communityReed(){
                 tds.append(td);
             }
             a.href = `${_config.endpoint.commutityInfo}?communityId=${item["CommunitId"]}`
+            a.innerHTML = "詳細"
             tr.append(tds, a);
             trs.append(tr);
         }
