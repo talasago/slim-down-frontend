@@ -38,8 +38,8 @@ function cognitoLogin() {
         alert("ログインしました");
 
         // ログイン後のページへ遷移
-        window.location.href = `./weight.html?sub=${response_body.sub}`
-
+        //window.location.href = `./weight.html?sub=${response_body.sub}`
+        window.location.href = `./community_list.html`
     }
     //let poolData = {
     //    UserPoolId: _config.cognito.userPoolId,
