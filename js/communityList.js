@@ -48,7 +48,7 @@ window.onload = function communityReed(){
                 td.appendChild(document.createTextNode(item[key]));
                 tds.append(td);
             }
-            a.href = `${_config.endpoint.commutityInfo}?communityId=${item["CommunitId"]}`
+            a.href = `./commurity_detail.html?communityId=${item["CommunityId"]}`
             a.innerHTML = "詳細"
             tr.append(tds, a);
             trs.append(tr);
