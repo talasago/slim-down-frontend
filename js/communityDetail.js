@@ -28,29 +28,28 @@ window.onload = function communityReed(){
         });
 
     function readContentScreenApply(response_body){
-        //itemsがなれけば処理を抜ける
-        if (!Object.keys(response_body).length) {
-            return null;
-        }
 
-        //一覧作成
-        let trs = document.createDocumentFragment();
-        for (let item of response_body.items) {
-            let tr = document.createElement("tr");
-            let tds = document.createDocumentFragment();
-            let a = document.createElement("a")
-
-            // column
-            for (let key in item) {
-                let td = document.createElement("td");
-                td.appendChild(document.createTextNode(item[key]));
-                tds.append(td);
-            }
-            a.href = `./community_detail.html?communityId=${item["communityId"]}`
-            a.innerHTML = "詳細"
-            tr.append(tds, a);
-            trs.append(tr);
+        // APIで取得した内容設定
+        if (typeof response_body.communityId !== "undefined") {
+            document.getElementById('communityId').innerText = response_body.communityId
         }
-        document.getElementById('TbodyCommunityList').append(trs);
+        if (typeof response_body.communityName !== "undefined") {
+            document.getElementById('communityName').innerText = response_body.communityName
+        }
+        if (typeof response_body.communityOwner !== "undefined") {
+            document.getElementById('communityOwner').innerText = response_body.communityOwner
+        }
+        if (typeof response_body.content !== "undefined") {
+            document.getElementById('content').innerText = response_body.content
+        }
+        if (typeof response_body.weight !== "undefined") {
+            document.getElementById('weight').innerText = response_body.weight
+        }
+        if (typeof response_body.createdAt !== "undefined") {
+            document.getElementById('createdAt').innerText = response_body.createdAt
+        }
+        if (typeof response_body.updatedAt !== "undefined") {
+            document.getElementById('updatedAt').innerText = response_body.updatedAt
+        }
     }
 }
