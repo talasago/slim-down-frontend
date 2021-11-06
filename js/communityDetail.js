@@ -38,10 +38,10 @@ window.onload = function communityReed(){
         if (response_body.communityOwner === LOGIN_USER_SUB) {
             for (let body_key of Object.keys(response_body)) {
                 if (input_list.includes(body_key)) {
-                    document.getElementById(body_key).value = response_body.body_key;
+                    document.getElementById(body_key).value = response_body['body_key'];
                     document.getElementById(body_key).disabled = false;
                 } else if (div_list.includes(body_key)) {
-                    document.getElementById(body_key).innerText = response_body.body_key;
+                    document.getElementById(body_key).innerText = response_body['body_key'];
                 }
             }
         }
