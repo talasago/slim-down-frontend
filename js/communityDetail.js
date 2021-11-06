@@ -1,4 +1,5 @@
-let id_token = localStorage.getItem("idToken");
+const ID_TOKEN = localStorage.getItem("idToken");
+let LOGIN_USER_SUB = localStorage.getItem()
 
 window.onload = function communityReed(){
     let queryParam = window.location.search;
@@ -7,7 +8,7 @@ window.onload = function communityReed(){
         method: "GET",
         mode: 'cors',
         headers: {
-            Authorization: id_token
+            Authorization: ID_TOKEN
         },
     };
 
@@ -28,28 +29,21 @@ window.onload = function communityReed(){
         });
 
     function readContentScreenApply(response_body){
+        // APIで取得した内容を設定
 
-        // APIで取得した内容設定
-        if (typeof response_body.communityId !== "undefined") {
-            document.getElementById('communityId').innerText = response_body.communityId
-        }
-        if (typeof response_body.communityName !== "undefined") {
-            document.getElementById('communityName').innerText = response_body.communityName
-        }
-        if (typeof response_body.communityOwner !== "undefined") {
-            document.getElementById('communityOwner').innerText = response_body.communityOwner
-        }
-        if (typeof response_body.content !== "undefined") {
-            document.getElementById('content').innerText = response_body.content
-        }
-        if (typeof response_body.weight !== "undefined") {
-            document.getElementById('weight').innerText = response_body.weight
-        }
-        if (typeof response_body.createdAt !== "undefined") {
-            document.getElementById('createdAt').innerText = response_body.createdAt
-        }
-        if (typeof response_body.updatedAt !== "undefined") {
-            document.getElementById('updatedAt').innerText = response_body.updatedAt
+        let input_list = ['communityId', 'communityName', 'content']
+        let div_list = ['communityOwner', 'weight', 'createdAt', 'updatedAt']
+
+        //コミュニティ作成者がログインしたユーザーの場合
+        if (response_body.communityOwner === LOGIN_USER_SUB) {
+            for (let body_key of Object.keys(response_body)) {
+                if (input_list.includes(body_key)) {
+                    document.getElementById(body_key).value = response_body.body_key;
+                    document.getElementById(body_key).disabled = false;
+                } else if (div_list.includes(body_key)) {
+                    document.getElementById(body_key).innerText = response_body.body_key;
+                }
+            }
         }
     }
 }
