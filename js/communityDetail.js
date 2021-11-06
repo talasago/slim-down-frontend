@@ -1,5 +1,5 @@
 const ID_TOKEN = localStorage.getItem("idToken");
-let LOGIN_USER_SUB = localStorage.getItem()
+const LOGIN_USER_SUB = localStorage.getItem("sub")
 
 window.onload = function communityReed(){
     let queryParam = window.location.search;
