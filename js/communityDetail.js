@@ -86,7 +86,7 @@ function updateCommunity() {
             if (response.ok) {
                 alert("更新しました");
             } else {
-                alert("データ読取時にエラーが発生しました");
+                alert("データ更新時にエラーが発生しました");
             }
         })
         .catch(error => {
@@ -117,11 +117,11 @@ function registCommunity(){
             if (response.ok) {
                 alert("登録しました");
             } else {
-                alert("データ読取時にエラーが発生しました");
+                alert("データ登録時にエラーが発生しました");
             }
         })
         .catch(error => {
-            alert("データ読取時にエラーが発生しました");
+            alert("データ登録時にエラーが発生しました");
             console.log(error);
         });
 }
