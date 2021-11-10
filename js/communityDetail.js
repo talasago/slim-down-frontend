@@ -1,8 +1,20 @@
 const ID_TOKEN = localStorage.getItem("idToken");
 const LOGIN_USER_SUB = localStorage.getItem("sub")
+const ABLED_INPUT_LIST = ['communityId', 'communityName', 'content']
+const ABLED_DIV_LIST = ['communityOwner', 'weight', 'createdAt', 'updatedAt']
 
 //queryParamがないときは新規登録扱いでいい
-window.onload = function communityReed(){
+window.onload = () => {
+    (window.location.search === '') ? communityNewRegist() : communityReed();
+}
+
+function communityNewRegist() {
+    for (let input_id of ABLED_INPUT_LIST) {
+        document.getElementById(input_id).disabled = false;
+    }
+}
+
+function communityReed(){
     let queryParam = window.location.search;
     let endpoint = `${_config.endpoint.commutityInfo}/${queryParam}`;
     let params = {
@@ -31,9 +43,6 @@ window.onload = function communityReed(){
 
     function readContentScreenApply(response_body){
         // APIで取得した内容を設定
-        let input_list = ['communityId', 'communityName', 'content']
-        let div_list = ['communityOwner', 'weight', 'createdAt', 'updatedAt']
-
         //コミュニティ作成者がログインしたユーザーの場合
         if (response_body.communityOwner === LOGIN_USER_SUB) {
             document.getElementById("btnUpdateCommunity").hidden = false;
@@ -41,13 +50,13 @@ window.onload = function communityReed(){
 
             //HACK:
             for (let body_key of Object.keys(response_body)) {
-                if (input_list.includes(body_key)) {
+                if (ABLED_INPUT_LIST.includes(body_key)) {
                     document.getElementById(body_key).value = response_body[body_key];
                     //IDはキーなので変更不可
                     if (body_key !== "communityId") {
                         document.getElementById(body_key).disabled = false;
                     }
-                } else if (div_list.includes(body_key)) {
+                } else if (ABLED_DIV_LIST.includes(body_key)) {
                     document.getElementById(body_key).innerText = response_body[body_key];
                 }
             }
@@ -55,7 +64,7 @@ window.onload = function communityReed(){
     }
 }
 
-function updateCommunity(){
+function updateCommunity() {
     let endpoint = `${_config.endpoint.commutityInfo}/`;
     let data = {
         communityId: document.getElementById("communityId").value,
@@ -75,6 +84,37 @@ function updateCommunity(){
         .then(response => {
             if (response.ok) {
                 alert("更新しました");
+            } else {
+                alert("データ読取時にエラーが発生しました");
+            }
+        })
+        .catch(error => {
+            alert("データ読取時にエラーが発生しました");
+            console.log(error);
+        });
+}
+
+function registCommunity(){
+    let endpoint = `${_config.endpoint.commutityInfo}/`;
+    let data = {
+        communityId: document.getElementById("communityId").value,
+        communityName: document.getElementById("communityName").value,
+        communityOwnerSub: LOGIN_USER_SUB,
+        content: document.getElementById("content").value
+    };
+    let params = {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+            Authorization: ID_TOKEN
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch(endpoint, params)
+        .then(response => {
+            if (response.ok) {
+                alert("登録しました");
             } else {
                 alert("データ読取時にエラーが発生しました");
             }
