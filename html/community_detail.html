@@ -17,7 +17,12 @@
     <div>コミュニティ内の合計体重: <div id="weight"></div></div>
     <div>コミュニティ作成日付: <div id="createdAt"></div></div>
     <div>コミュニティ更新日付: <div id="updatedAt"></div></div>
-
+    <div>
+        <button id="btnCommunityJoin" hidden onclick="dispAlertForCommunity('join')">コミュニティ参加</button>
+        <button id="btnCommunityLeave" hidden onclick="dispAlertForCommunity('leave')">コミュニティ退会</button>
+        <button id="btnUpdateCommunity" hidden onclick="updateCommunity()">更新</button>
+        <button id="btnDeleteCommunity" hidden onclick="deleteCommunity()">退会</button>
+    </div>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.958.0.min.js"></script>
     <script src="/js/congig.js"></script>
     <script src="/js/communityDetail.js"></script>
