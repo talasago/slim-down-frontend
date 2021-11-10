@@ -31,7 +31,7 @@ window.onload = function communityReed(){
 
     function readContentScreenApply(response_body){
         // APIで取得した内容を設定
-        let input_list = ['communityName', 'content']
+        let input_list = ['communityId', 'communityName', 'content']
         let div_list = ['communityOwner', 'weight', 'createdAt', 'updatedAt']
 
         //コミュニティ作成者がログインしたユーザーの場合
@@ -39,10 +39,14 @@ window.onload = function communityReed(){
             document.getElementById("btnUpdateCommunity").hidden = false;
             document.getElementById("btnDeleteCommunity").hidden = false;
 
+            //HACK:
             for (let body_key of Object.keys(response_body)) {
                 if (input_list.includes(body_key)) {
                     document.getElementById(body_key).value = response_body[body_key];
-                    document.getElementById(body_key).disabled = false;
+                    //IDはキーなので変更不可
+                    if (body_key !== "communityId") {
+                        document.getElementById(body_key).disabled = false;
+                    }
                 } else if (div_list.includes(body_key)) {
                     document.getElementById(body_key).innerText = response_body[body_key];
                 }
