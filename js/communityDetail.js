@@ -9,6 +9,7 @@ window.onload = () => {
 }
 
 function communityNewRegist() {
+    document.getElementById("btnRegistCommunity").hidden = false;
     for (let input_id of ABLED_INPUT_LIST) {
         document.getElementById(input_id).disabled = false;
     }
