@@ -127,6 +127,31 @@ function registCommunity(){
 }
 
 function deleteCommunity(){
+    let endpoint = `${_config.endpoint.commutityInfo}/`;
+    let data = {
+        communityId: document.getElementById("communityId").value,
+    };
+    let params = {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+            Authorization: ID_TOKEN
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch(endpoint, params)
+        .then(response => {
+            if (response.ok) {
+                alert("削除しました");
+            } else {
+                alert("データ削除時にエラーが発生しました");
+            }
+        })
+        .catch(error => {
+            alert("データ削除時にエラーが発生しました");
+            console.log(error);
+        });
 
 }
 
