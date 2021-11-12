@@ -132,7 +132,7 @@ function deleteCommunity(){
         communityId: document.getElementById("communityId").value,
     };
     let params = {
-        method: "POST",
+        method: "DELETE",
         mode: 'cors',
         headers: {
             Authorization: ID_TOKEN
@@ -145,7 +145,6 @@ function deleteCommunity(){
             if (response.ok) {
                 alert("削除しました");
             } else {
-                alert("データ削除時にエラーが発生しました");
             }
         })
         .catch(error => {
