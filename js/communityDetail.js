@@ -1,7 +1,8 @@
 const ID_TOKEN = localStorage.getItem("idToken");
-const LOGIN_USER_SUB = localStorage.getItem("sub")
-const ABLED_INPUT_LIST = ['communityId', 'communityName', 'content']
-const ABLED_DIV_LIST = ['communityOwner', 'weight', 'createdAt', 'updatedAt']
+const LOGIN_USER_SUB = localStorage.getItem("sub");
+const USER_BELONG_COMMUNITYID = localStorage.getItem("userBelongCommunityId");
+const ABLED_INPUT_LIST = ['communityId', 'communityName', 'content'];
+const ABLED_DIV_LIST = ['communityOwner', 'weight', 'createdAt', 'updatedAt'];
 
 //queryParamがないときは新規登録扱いでいい
 window.onload = () => {
@@ -48,6 +49,26 @@ function communityReed(){
         if (response_body.communityOwner === LOGIN_USER_SUB) {
             document.getElementById("btnUpdateCommunity").hidden = false;
             document.getElementById("btnDeleteCommunity").hidden = false;
+
+            //HACK:
+            for (let body_key of Object.keys(response_body)) {
+                if (ABLED_INPUT_LIST.includes(body_key)) {
+                    document.getElementById(body_key).value = response_body[body_key];
+                    //IDはキーなので変更不可
+                    if (body_key !== "communityId") {
+                        document.getElementById(body_key).disabled = false;
+                    }
+                } else if (ABLED_DIV_LIST.includes(body_key)) {
+                    document.getElementById(body_key).innerText = response_body[body_key];
+                }
+            }
+        } else {
+            // 該当のコミュニティに入っているばあい
+            if (USER_BELONG_COMMUNITYID === response_body.communityId) {
+                document.getElementById("btnCommunityLeave").hidden = false;
+            } else if (!USER_BELONG_COMMUNITYID) {
+                document.getElementById("btnCommunityJoin").hidden = false;
+            }
 
             //HACK:
             for (let body_key of Object.keys(response_body)) {

@@ -34,6 +34,7 @@ function cognitoLogin() {
         localStorage.setItem("idToken", response_body.idToken);
         localStorage.setItem("accessToken", response_body.accessToken);
         localStorage.setItem("sub", response_body.sub);
+        localStorage.setItem("userBelongCommunityId", response_body.userBelongCommunityId);
 
         alert("ログインしました");
 
