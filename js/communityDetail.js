@@ -66,7 +66,9 @@ function communityReed(){
             // 該当のコミュニティに入っているばあい
             if (USER_BELONG_COMMUNITYID === response_body.communityId) {
                 document.getElementById("btnCommunityLeave").hidden = false;
-            } else if (USER_BELONG_COMMUNITYID === null || USER_BELONG_COMMUNITYID === "") {
+            } else if (USER_BELONG_COMMUNITYID === null
+                    || USER_BELONG_COMMUNITYID === ''
+                    || USER_BELONG_COMMUNITYID === 'null') {
                 document.getElementById("btnCommunityJoin").hidden = false;
             }
 
