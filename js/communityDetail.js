@@ -178,7 +178,7 @@ function deleteCommunity(){
 }
 
 function joinCommunity(){
-    let endpoint = `${_config.endpoint.commutity}/`;
+    let endpoint = `${_config.endpoint.community}/`;
     let data = {
         communityId: document.getElementById("communityId").value,
         sub: LOGIN_USER_SUB
@@ -207,7 +207,7 @@ function joinCommunity(){
 }
 
 function leaveCommunity(){
-    let endpoint = `${_config.endpoint.commutity}/`;
+    let endpoint = `${_config.endpoint.community}/`;
     let data = {
         communityId: document.getElementById("communityId").value,
         sub: LOGIN_USER_SUB
