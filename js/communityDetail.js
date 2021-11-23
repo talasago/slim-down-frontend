@@ -168,20 +168,69 @@ function deleteCommunity(){
             if (response.ok) {
                 alert("削除しました");
             } else {
+                alert("データ削除時にエラーが発生しました");
             }
         })
         .catch(error => {
             alert("データ削除時にエラーが発生しました");
             console.log(error);
         });
-
 }
 
-function dispAlertForCommunity(type){
-    if (type === "join") {
-        // アラートでok,ng
-        // okならjoinのAPI叩く
-    } else if (type == "leave") {
+function joinCommunity(){
+    let endpoint = `${_config.endpoint.commutity}/`;
+    let data = {
+        communityId: document.getElementById("communityId").value,
+        sub: LOGIN_USER_SUB
+    };
+    let params = {
+        method: "PUT",
+        mode: 'cors',
+        headers: {
+            Authorization: ID_TOKEN
+        },
+        body: JSON.stringify(data)
+    };
 
-    }
+    fetch(endpoint, params)
+        .then(response => {
+            if (response.ok) {
+                alert("コミュニティに参加しました");
+            } else {
+                alert("コミュニティに参加時にエラーが発生しました");
+            }
+        })
+        .catch(error => {
+            alert("コミュニティに参加時にエラーが発生しました");
+            console.log(error);
+        });
+}
+
+function leaveCommunity(){
+    let endpoint = `${_config.endpoint.commutity}/`;
+    let data = {
+        communityId: document.getElementById("communityId").value,
+        sub: LOGIN_USER_SUB
+    };
+    let params = {
+        method: "DELETE",
+        mode: 'cors',
+        headers: {
+            Authorization: ID_TOKEN
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch(endpoint, params)
+        .then(response => {
+            if (response.ok) {
+                alert("コミュニティから退会しました");
+            } else {
+                alert("コミュニティ退会時にエラーが発生しました");
+            }
+        })
+        .catch(error => {
+            alert("コミュニティ退会時にエラーが発生しました");
+            console.log(error);
+        });
 }
