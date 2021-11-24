@@ -182,14 +182,15 @@ function joinCommunity(){
     let endpoint = `${_config.endpoint.community}/`;
     let data = {
         communityId: document.getElementById("communityId").value,
-        sub: LOGIN_USER_SUB
+        sub: LOGIN_USER_SUB,
+        //NOTE:tokenをbodyに入れていいのだろうか...
+        AccessToken: ACCESS_TOKEN
     };
     let params = {
         method: "PUT",
         mode: 'cors',
         headers: {
             Authorization: ID_TOKEN,
-            AccessToken: ACCESS_TOKEN
         },
         body: JSON.stringify(data)
     };
@@ -212,7 +213,9 @@ function leaveCommunity(){
     let endpoint = `${_config.endpoint.community}/`;
     let data = {
         communityId: document.getElementById("communityId").value,
-        sub: LOGIN_USER_SUB
+        sub: LOGIN_USER_SUB,
+        //NOTE:tokenをbodyに入れていいのだろうか...
+        AccessToken: ACCESS_TOKEN
     };
     let params = {
         method: "DELETE",
