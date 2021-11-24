@@ -1,5 +1,6 @@
 const ID_TOKEN = localStorage.getItem("idToken");
 const LOGIN_USER_SUB = localStorage.getItem("sub");
+const ACCESS_TOKEN = localStorage.getItem("accessToken");
 const USER_BELONG_COMMUNITYID = localStorage.getItem("userBelongCommunityId");
 const ABLED_INPUT_LIST = ['communityId', 'communityName', 'content'];
 const ABLED_DIV_LIST = ['communityOwner', 'weight', 'createdAt', 'updatedAt'];
@@ -187,7 +188,8 @@ function joinCommunity(){
         method: "PUT",
         mode: 'cors',
         headers: {
-            Authorization: ID_TOKEN
+            Authorization: ID_TOKEN,
+            AccessToken: ACCESS_TOKEN
         },
         body: JSON.stringify(data)
     };
