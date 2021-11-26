@@ -140,6 +140,9 @@ function registCommunity(){
         .then(response => {
             if (response.ok) {
                 alert("登録しました");
+                localStorage.setItem("userBelongCommunityId", document.getElementById("communityId").value);
+                document.getElementById("btnCommunityJoin").hidden = true;
+                document.getElementById("btnCommunityLeave").hidden = false;
             } else {
                 alert("データ登録時にエラーが発生しました");
             }
@@ -168,6 +171,9 @@ function deleteCommunity(){
         .then(response => {
             if (response.ok) {
                 alert("削除しました");
+                localStorage.setItem("userBelongCommunityId", "");
+                document.getElementById("btnCommunityJoin").hidden = false;
+                document.getElementById("btnCommunityLeave").hidden = true;
             } else {
                 alert("データ削除時にエラーが発生しました");
             }
@@ -199,6 +205,7 @@ function joinCommunity(){
         .then(response => {
             if (response.ok) {
                 alert("コミュニティに参加しました");
+
             } else {
                 alert("コミュニティに参加時にエラーが発生しました");
             }
