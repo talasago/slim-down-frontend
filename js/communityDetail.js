@@ -1,7 +1,6 @@
 const ID_TOKEN = localStorage.getItem("idToken");
 const LOGIN_USER_SUB = localStorage.getItem("sub");
 const ACCESS_TOKEN = localStorage.getItem("accessToken");
-const USER_BELONG_COMMUNITYID = localStorage.getItem("userBelongCommunityId");
 const ABLED_INPUT_LIST = ['communityId', 'communityName', 'content'];
 const ABLED_DIV_LIST = ['communityOwner', 'weight', 'createdAt', 'updatedAt'];
 
@@ -65,11 +64,12 @@ function communityReed(){
             }
         } else {
             // 該当のコミュニティに入っているばあい
-            if (USER_BELONG_COMMUNITYID === response_body.communityId) {
+            let user_belong_communityid = localStorage.getItem("userBelongCommunityId");
+            if (user_belong_communityid === response_body.communityId) {
                 document.getElementById("btnCommunityLeave").hidden = false;
-            } else if (USER_BELONG_COMMUNITYID === null
-                    || USER_BELONG_COMMUNITYID === ''
-                    || USER_BELONG_COMMUNITYID === 'null') {
+            } else if (user_belong_communityid === null
+                    || user_belong_communityid === ''
+                    || user_belong_communityid === 'null') {
                 document.getElementById("btnCommunityJoin").hidden = false;
             }
 
