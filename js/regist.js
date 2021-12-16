@@ -27,9 +27,8 @@ function cognitoRegist() {
                 alert(err.message || JSON.stringify(err));
                 return;
             }
-            let cognitoUser = result.user;
-            //TODO:登録成功メッセージの追加
-            console.log('user name is ' + cognitoUser.getUsername());
+            alert('仮登録が完了しました。')
+            window.location.href = './confirmation.html';
         }
     );
 }

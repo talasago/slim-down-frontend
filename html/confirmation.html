@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>認証コード入力</title>
+</head>
+
+<body>
+  <h1>認証コード入力</h1>
+  <div>
+    <input type="text" id="email" name="email">
+    <input type="text" id="confirmationCode" name="confirmationCode">
+    <input type="button" value="送信" onclick="confirmSignUp()">
+  </div>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.958.0.min.js"></script>
+  <script src="/js/vendor/amazon-cognito-identity.min.js"></script>
+  <script src="/js/congig.js"></script>
+  <script src="/js/confirmation.js"></script>
+</body>
+</html>
