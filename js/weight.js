@@ -1,8 +1,24 @@
 let id_token = localStorage.getItem("idToken");
 let access_token = localStorage.getItem("accessToken");
 const SUB = localStorage.getItem("sub");
+const BELONG_GCOMMUNITY_ID = localStorage.getItem("userBelongCommunityId");
 
-window.onload = function weightReed(){
+
+window.onload = () => {
+    weightReed();
+    setLinkToCommuDetail();
+}
+
+function setLinkToCommuDetail() {
+    if (BELONG_GCOMMUNITY_ID !== null) {
+        let a = document.getElementById("belongCommunity");
+        a.href = `./community_detail.html?communityId=${item["BELONG_GCOMMUNITY_ID"]}`;
+        a.hidden = false;
+    }
+}
+
+
+function weightReed(){
     //subはクエリパラメータで取得
     let query_string = window.location.search;
     let endpoint = `${_config.endpoint.weight}/${query_string}`;
