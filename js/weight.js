@@ -12,7 +12,7 @@ window.onload = () => {
 function setLinkToCommuDetail() {
     if (BELONG_GCOMMUNITY_ID !== null) {
         let a = document.getElementById("belongCommunity");
-        a.href = `./community_detail.html?communityId=${item["BELONG_GCOMMUNITY_ID"]}`;
+        a.href = `./community_detail.html?communityId=${BELONG_GCOMMUNITY_ID}`;
         a.hidden = false;
     }
 }
