@@ -140,6 +140,7 @@ function registCommunity(){
         .then(response => {
             if (response.ok) {
                 alert("登録しました");
+                localStorage.setItem("userBelongCommunityId", document.getElementById("communityId").value);
             } else {
                 alert("データ登録時にエラーが発生しました");
             }
@@ -168,6 +169,7 @@ function deleteCommunity(){
         .then(response => {
             if (response.ok) {
                 alert("削除しました");
+                localStorage.removeItem("userBelongCommunityId");
             } else {
                 alert("データ削除時にエラーが発生しました");
             }
