@@ -1,8 +1,25 @@
 let id_token = localStorage.getItem("idToken");
 let access_token = localStorage.getItem("accessToken");
 let sub = localStorage.getItem("sub");
+const BELONG_GCOMMUNITY_ID = localStorage.getItem("userBelongCommunityId");
 
-window.onload = function communityReed(){
+window.onload = () => {
+    communityReed();
+    setLink();
+}
+
+function setLink() {
+    let a = document.getElementById("linkWeightRegist");
+    a.href = `./weight.html?sub=${sub}`;
+
+    if (BELONG_GCOMMUNITY_ID !== null) {
+        let a = document.getElementById("belongCommunity");
+        a.href = `./community_detail.html?communityId=${BELONG_GCOMMUNITY_ID}`;
+        a.hidden = false;
+    }
+}
+
+function communityReed(){
     //subはクエリパラメータで取得
     let endpoint = `${_config.endpoint.commutityInfo}/list`;
     let params = {

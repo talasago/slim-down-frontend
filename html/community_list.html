@@ -9,14 +9,26 @@
 </head>
 
 <body>
-    <h1>コミュニティ一覧</h1>
     <div>
-        <button onclick="location.href='./community_detail.html'">コミュニティ新規作成</button>
+        <div style="float: left">
+            <h1>コミュニティ一覧</h1>
+            <div>
+                <button onclick="location.href='./community_detail.html'">コミュニティ新規作成</button>
+            </div>
+            <table>
+                <tbody id="TbodyCommunityList">
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: right">
+            <a href="" id="linkWeightRegist">体重登録</a>
+            &nbsp;
+            <a href="" id="linkBelongCommunity">所属コミュニティ</a>
+            &nbsp;
+            <a href="dummy">ログアウト</a>
+        </div>
     </div>
-    <table>
-        <tbody id="TbodyCommunityList">
-        </tbody>
-    </table>
+
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.958.0.min.js"></script>
     <script src="/js/congig.js"></script>
     <script src="/js/communityList.js"></script>
