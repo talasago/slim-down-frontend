@@ -1,12 +1,25 @@
 const ID_TOKEN = localStorage.getItem("idToken");
 const LOGIN_USER_SUB = localStorage.getItem("sub");
 const ACCESS_TOKEN = localStorage.getItem("accessToken");
+const BELONG_GCOMMUNITY_ID = localStorage.getItem("userBelongCommunityId");
 const ABLED_INPUT_LIST = ['communityId', 'communityName', 'content'];
 const ABLED_DIV_LIST = ['communityOwner', 'weight', 'createdAt', 'updatedAt'];
 
 //queryParamがないときは新規登録扱いでいい
 window.onload = () => {
     (window.location.search === '') ? communityNewRegist() : communityReed();
+    setLink();
+}
+
+function setLink() {
+    let a = document.getElementById("linkWeightRegist");
+    a.href = `./weight.html?sub=${LOGIN_USER_SUB}`;
+
+    if (BELONG_GCOMMUNITY_ID !== null) {
+        let a = document.getElementById("linkBelongCommunity");
+        a.href = `./community_detail.html?communityId=${BELONG_GCOMMUNITY_ID}`;
+        a.hidden = false;
+    }
 }
 
 function communityNewRegist() {
