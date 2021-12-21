@@ -14,12 +14,6 @@ window.onload = () => {
 function setLink() {
     let a = document.getElementById("linkWeightRegist");
     a.href = `./weight.html?sub=${LOGIN_USER_SUB}`;
-
-    if (BELONG_GCOMMUNITY_ID !== null) {
-        let a = document.getElementById("linkBelongCommunity");
-        a.href = `./community_detail.html?communityId=${BELONG_GCOMMUNITY_ID}`;
-        a.hidden = false;
-    }
 }
 
 function communityNewRegist() {
