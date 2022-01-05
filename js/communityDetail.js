@@ -51,50 +51,38 @@ function communityReed(){
         });
 
     function readContentScreenApply(response_body){
-        // APIで取得した内容を設定
         //コミュニティ作成者がログインしたユーザーの場合
         if (response_body.communityOwner === LOGIN_USER_SUB) {
             document.getElementById("btnUpdateCommunity").hidden = false;
             document.getElementById("btnDeleteCommunity").hidden = false;
+        }
 
-            //HACK:
-            for (let body_key of Object.keys(response_body)) {
-                if (ABLED_INPUT_LIST.includes(body_key)) {
-                    document.getElementById(body_key).value = response_body[body_key];
-                    //IDはキーなので変更不可
-                    if (body_key !== "communityId") {
-                        document.getElementById(body_key).disabled = false;
-                    }
-                } else if (ABLED_DIV_LIST.includes(body_key)) {
-                    document.getElementById(body_key).innerText = response_body[body_key];
-                }
-            }
-        } else {
-            // 該当のコミュニティに入っているばあい
-            let user_belong_communityid = localStorage.getItem("userBelongCommunityId");
-            if (user_belong_communityid === response_body.communityId) {
-                document.getElementById("btnCommunityLeave").hidden = false;
-            } else if (user_belong_communityid === null
-                    || user_belong_communityid === ''
-                    || user_belong_communityid === 'null') {
-                document.getElementById("btnCommunityJoin").hidden = false;
-            }
+        // 該当のコミュニティに入っている場合
+        let user_belong_communityid = localStorage.getItem("userBelongCommunityId");
+        if (user_belong_communityid === response_body.communityId) {
+            document.getElementById("btnCommunityLeave").hidden = false;
+        } else if (user_belong_communityid === null
+                || user_belong_communityid === ''
+                || user_belong_communityid === 'null') {
+            document.getElementById("btnCommunityJoin").hidden = false;
+        }
 
-            //HACK:
-            for (let body_key of Object.keys(response_body)) {
-                if (ABLED_INPUT_LIST.includes(body_key)) {
-                    document.getElementById(body_key).value = response_body[body_key];
-                    //IDはキーなので変更不可
-                    if (body_key !== "communityId") {
-                        document.getElementById(body_key).disabled = false;
-                    }
-                } else if (ABLED_DIV_LIST.includes(body_key)) {
-                    document.getElementById(body_key).innerText = response_body[body_key];
+        // APIレスポンスの内容を設定
+        //HACK:
+        for (let body_key of Object.keys(response_body)) {
+            if (ABLED_INPUT_LIST.includes(body_key)) {
+                document.getElementById(body_key).value = response_body[body_key];
+                //IDはキーなので変更不可。新規登録だけ可能。
+                if (body_key !== "communityId") {
+                    document.getElementById(body_key).disabled = false;
                 }
+            } else if (ABLED_DIV_LIST.includes(body_key)) {
+                document.getElementById(body_key).innerText = response_body[body_key];
             }
         }
     }
 }
+
 
 function updateCommunity() {
     let endpoint = `${_config.endpoint.commutityInfo}/`;
